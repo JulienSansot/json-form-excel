@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>json-excel</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.0.0/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="row" style="margin-top:50px">
+        <div class="col-lg-12">
+
+          <div>
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#tab-form" data-toggle="tab">Form</a></li>
+              <li ><a href="#tab-excel" data-toggle="tab">Copy from Excel</a></li>
+              <li><a href="#tab-json" data-toggle="tab">Edit raw JSON</a></li>
+            </ul>
+
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab-form">
+                
+              </div>
+              <div class="tab-pane" id="tab-excel">
+                <span>Tab separated values. You can copy-paste from excel</span>        
+                <textarea id="textarea-excel" class="form-control" rows="20" ></textarea>                
+              </div>
+              <div class="tab-pane" id="tab-json">
+                <span>Edit the raw JSON (or paste one) :</span>       
+                <textarea id="textarea-json" class="form-control" rows="20" ></textarea>
+                <span id="msg-json-non-valid" class="red" style="visibility: hidden;">JSON non valid.</span>
+              </div>
+            </div>
+            <div id="json-errors"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>    
+      Page = {
+        json_template: [{
+    "name": "field 1",
+    "type": "string"
+}, {
+    "name": "field options",
+    "type": "string",
+    "options": [
+        "option1",
+        "option2",
+        "option3",
+        "option4",
+        "option5"
+    ]
+}, {
+    "name": "field unix date 1",
+    "type": "epoch"
+}, {
+    "name": "field unix date 2",
+    "type": "epoch"
+}, {
+    "name": "field 2",
+    "type": "string"
+}, {
+    "name": "field options 2",
+    "type": "string",
+    "options": [
+        "option 1",
+        "option 2"
+    ]
+}, {
+    "name": "field 3",
+    "type": "string"
+}, {
+    "name": "Subfield.test1",
+    "type": "string"
+}, {
+    "name": "Subfield.test2",
+    "type": "string"
+}, {
+    "name": "field 4",
+    "type": "string"
+}, {
+    "name": "field date 1",
+    "type": "date"
+}, {
+    "name": "field int",
+    "type": "int"
+}, {
+    "name": "field 5",
+    "type": "string"
+}, {
+    "name": "field 6",
+    "type": "string"
+}, {
+    "name": "field 7",
+    "type": "string"
+}, {
+    "name": "field 8",
+    "type": "string"
+}, {
+    "name": "field 9",
+    "type": "string"
+}, {
+    "name": "field 10",
+    "type": "string"
+}, {
+    "name": "field 11",
+    "type": "string"
+}, {
+    "name": "field array",
+    "type": "array"
+}, {
+    "name": "field 13",
+    "type": "string"
+}, {
+    "name": "field int 2",
+    "type": "int"
+}, {
+    "name": "field int 3",
+    "type": "int"
+}, {
+    "name": "field 16",
+    "type": "string"
+}, {
+    "name": "field 17",
+    "type": "string"
+}, {
+    "name": "field 18",
+    "type": "string"
+}, {
+    "name": "field 19",
+    "type": "string"
+}, {
+    "name": "field 20",
+    "type": "string"
+}, {
+    "name": "field 21",
+    "type": "string"
+}]
+      }
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.3.0/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.0.0/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="json-form-excel.js"></script>
+    <script>
+
+      $(function(){
+        var myJsObject = null;
+
+        JsonFormExcel.set(myJsObject);
+
+      })
+    </script>
+  </body>
+</html>
